@@ -2,6 +2,7 @@ const mongoose= require('mongoose');
 const validator= require('validator')
 const bcrypt= require('bcryptjs');
 
+
 const studentSchema= new mongoose.Schema({
     SID:{
         type:Number,

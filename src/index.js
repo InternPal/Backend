@@ -18,7 +18,6 @@ const port= process.env.PORT|| 3000;
 
 
 
-
 app.use(express.json());
 app.use("/students",studentRoutes);
 app.use("/jobs",jobRoutes);

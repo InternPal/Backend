@@ -2,19 +2,18 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/InternPal/Backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/InternPal/Backend/issues"
-  },
-  "homepage": "https://github.com/InternPal/Backend#readme"
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.10",
+    "nodemon": "^2.0.14",
+    "validator": "^13.6.0"
+  }
 }

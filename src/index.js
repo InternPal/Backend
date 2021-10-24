@@ -1,6 +1,10 @@
 const express= require('express');
-
+const cors= require('cors');
 require('./db/mongoose.js');
+
+
+
+
 const Student = require('./models/student');
 const Job= require('./models/job');
 const Admin= require('./models/admin');
@@ -15,6 +19,20 @@ const adminRoutes= require('./routers/admin');
 
 const app=express();
 const port= process.env.PORT|| 3000;
+
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentinals: true
+  }))
+
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-AUTHENTICATION, X-IP, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+  });
 
 
 

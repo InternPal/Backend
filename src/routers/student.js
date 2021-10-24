@@ -84,23 +84,7 @@ router.post('/valid',async(req,res)=>{
 // }
 
 
-router.post('/login',async(req,res)=>{
-    try {
-        if(req.body.type ==='Student'){
-            const student= await Student.findByCredentials(req.body.email,req.body.password);
-            res.send(student);
-        }else if(req.body.type ==='Mentor'){
-            const mentor= await Mentor.findByCredentials(req.body.email,req.body.password);
-            res.send(mentor);
-        }else {
-            const admin= await Admin.findByCredentials(req.body.email,req.body.password);
-            res.send(admin);
-        }
-        
-    } catch (error) {
-        res.status(400).send();
-    }
-})
+
 
 router.get('/',async(req,res)=>{
 

@@ -15,6 +15,7 @@ const studentRoutes=require('./routers/student');
 const jobRoutes=require('./routers/job');
 const mentorRoutes= require('./routers/mentor');
 const adminRoutes= require('./routers/admin');
+const authRoutes =require('./routers/auth');
 
 
 const app=express();
@@ -41,6 +42,7 @@ app.use("/students",studentRoutes);
 app.use("/jobs",jobRoutes);
 app.use("/mentors",mentorRoutes);
 app.use("/admins",adminRoutes);
+app.use(authRoutes);
 
 
 

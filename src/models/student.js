@@ -73,6 +73,16 @@ const studentSchema= new mongoose.Schema({
         required:true
 
     },
+    cgList:[{
+        sg:{
+            type:Array,
+            required:true
+        },
+        cg:{
+            type:Array,
+            required:true
+        }
+    }],
     cgpa:{
         type:Number,
         required:true
@@ -88,6 +98,16 @@ const studentSchema= new mongoose.Schema({
         required:true
 
     },
+    backlogList:[{
+         total:{
+             type:Number,
+             required:true
+         },
+         ongoing:{
+             type:Array,
+             required:true
+         }
+    }],
     backlogs:{
         type:Number,
         required:true

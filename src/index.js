@@ -9,6 +9,7 @@ const Student = require('./models/student');
 const Job= require('./models/job');
 const Admin= require('./models/admin');
 const Mentor= require('./models/mentor');
+const jobApplication= require('./models/jobApplication');
 
 
 const studentRoutes=require('./routers/student');
@@ -16,6 +17,7 @@ const jobRoutes=require('./routers/job');
 const mentorRoutes= require('./routers/mentor');
 const adminRoutes= require('./routers/admin');
 const authRoutes =require('./routers/auth');
+const jobAppRoutes= require('./routers/jobApplication');
 
 
 const app=express();
@@ -43,6 +45,7 @@ app.use("/jobs",jobRoutes);
 app.use("/mentors",mentorRoutes);
 app.use("/admins",adminRoutes);
 app.use(authRoutes);
+app.use(jobAppRoutes);
 
 
 

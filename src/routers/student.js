@@ -35,25 +35,52 @@ router.post('/valid',async(req,res)=>{
 /////////////////////////-------------Filter route(not working )---------------------------------//////////////
 
 
-// router.post('/filter',async(req,res)=>{
+router.get('/filter/:id',async(req,res)=>{
 
-// try {
 
-//     const SID= req.body.SID;
-//     const student= await Student.findOne({SID:SID});
-//     const cg=student.cgpa;
-//     const branch = student.branch;
-//     const backlogs= student.backlogs;
-//     const filteredJobs= await Job.find({eligibility:{cg : { $lte : cg}, branch:branch, backlogs:{ $lte: backlogs},class10:{ $gte:student.class10},class12:{ $gte:student.class12}}}).exec();
-//     res.send(filteredJobs);
+    const SID= req.params.id;
+    const student= await Student.findOne({SID:SID});
+
+    if(!student){
+        throw new Error('The student does not exist');
+    }
     
+    const cg=student.cgpa;
+    const branch = student.branch;
+    const backlogs= student.backlogs;
+    const class10= student.class10;
+    const class12= student.class12;
+    // const filteredJobs= await Job.find({eligibility:{"cg" : { $lte : cg}, branch:branch, backlogs:{ $lte: backlogs},class10:{ $gte:student.class10},class12:{ $gte:student.class12}}}).exec();
+    // res.send(filteredJobs);
+
+
+    Job.where('eligibility.cg').lte(cg)
+        .where('eligibility.branch').equals(branch)
+        .where('eligibility.backlogs').lte(backlogs)
+        .where ('eligibility.class10').lte(class10)
+        .where ('eligibility.class12').lte(class12)
+            .exec(function(err,result){
+         if(err){
+             console.log(err);
+         }else{
+             res.send(result);
+         }   
+    })
+
+
+    // User.where('age').gte(5).lte(200)
+    //     .exec(function (err, result) {
+    // if (err){
+    //     console.log(err)
+    // }else{
+    //     console.log("Result :", result) 
+    // }
+})
     
-// } catch (error) {
-//     res.status(400).send(error);
-// }
+
 
     
-// })
+
 
 ////////////////////////////////////////////////-----------example---------/////////////////////////////
 
@@ -82,23 +109,7 @@ router.post('/valid',async(req,res)=>{
 // }
 
 
-router.post('/login',async(req,res)=>{
-    try {
-        if(req.body.type ==='Student'){
-            const student= await Student.findByCredentials(req.body.email,req.body.password);
-            res.send(student);
-        }else if(req.body.type ==='Mentor'){
-            const mentor= await Mentor.findByCredentials(req.body.email,req.body.password);
-            res.send(mentor);
-        }else {
-            const admin= await Admin.findByCredentials(req.body.email,req.body.password);
-            res.send(admin);
-        }
-        
-    } catch (error) {
-        res.status(400).send();
-    }
-})
+
 
 router.get('/',async(req,res)=>{
 

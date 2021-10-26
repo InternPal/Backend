@@ -4,6 +4,7 @@ const Student= require('../models/student');
 const Mentor= require('../models/mentor');
 const Admin= require('../models/admin');
 const Job= require('../models/job');
+const jobApplication=require('../models/jobApplication');
 
 
 
@@ -31,7 +32,7 @@ router.post('/valid',async(req,res)=>{
 
 })
 
-/////////////////////////-------------Filter route(not working )---------------------------------//////////////
+/////////////////////////-------------Filter route---------------------------------//////////////
 
 
 router.get('/filter/:id',async(req,res)=>{
@@ -60,7 +61,7 @@ router.get('/filter/:id',async(req,res)=>{
         .where ('eligibility.class12').lte(class12)
             .exec(function(err,result){
          if(err){
-             console.log(err);
+             res.send(err);
          }else{
              res.send(result);
          }   
@@ -83,29 +84,15 @@ router.get('/filter/:id',async(req,res)=>{
 
 ////////////////////////////////////////////////-----------example---------/////////////////////////////
 
-// router.route('/fetchdata').get(function(req,res){
 
-//     employees.find( {{"age"  : {$gt : 25}}, function(err, result){
-
-//         if(err){
-//             res.send(err)
-//         }
-//         else{
-
-
-//             res.send(result)
-//         }
-
-//         });
-
-// })
 
 // {
 //     "email":"dhruv@gmail.com",
-//     "password":"1234a@ABC",
+//     "password":"1234abc@ABC",
 //     "type":"Student"
     
 // }
+
 
 
 
@@ -179,5 +166,32 @@ router.patch('/:id',async(req,res)=>{
     
 })
 
+
+
+////////////////////////////-------------jobApp------------------///////////////////////
+
+router.get('/jobApp/:id', async(req,res)=>{
+      const SID= req.params.id;
+    
+      
+      try {
+        const companies= await jobApplication.find({SID})
+        res.status(200).send(companies);
+          
+      } catch (error) {
+          res.status(500).send(error);
+      }
+
+    //   jobApplication.where('SID').equals(SID)
+    //                    .exec(function(err,result){
+    //                         if(result){
+    //                             companies.push(result.jobCompany)
+    //                         }
+    //                    })
+    //     res.status(200).send(companies);
+
+      
+
+})
 
 module.exports=router;

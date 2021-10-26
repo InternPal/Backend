@@ -17,4 +17,16 @@ router.post('/jobApp',async(req,res)=>{
     
 })
 
+router.get('/jobApp/:id',async(req,res)=>{
+    const jobID= req.params.id;
+
+    try {
+        const jobs= await jobApplication.find({jobID})
+        res.status(200).send(jobs);
+          
+      } catch (error) {
+          res.status(500).send(error);
+      }
+})
+
 module.exports=router;

@@ -33,7 +33,9 @@ const jobAppSchema =new mongoose.Schema({
        type:String,
        required:true
    },
-   status: String
+   status: {
+       type:String
+   }
 })
 const jobApplication = mongoose.model('jobApplication',jobAppSchema);
 

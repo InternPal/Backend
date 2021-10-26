@@ -54,6 +54,15 @@ const Job= mongoose.model('Job',{
          required:true,
          trim:true
      },
+     year:{
+         type:Number,
+         required:true
+     },
+     jobType:{
+         type:String,
+         required:true,
+         trim:true
+     },
      profile:{
          type:String,
          required:true,

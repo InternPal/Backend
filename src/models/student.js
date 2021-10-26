@@ -51,12 +51,12 @@ const studentSchema= new mongoose.Schema({
         trim:true
 
     },
-    category:{    //remove
-        type:String,
-        required:true,
-        trim:true
+    // category:{    //remove
+    //     type:String,
+    //     required:true,
+    //     trim:true
 
-    },
+    // },
     dob:{
         type:Date,
         required:true

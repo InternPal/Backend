@@ -13,10 +13,9 @@ router.post('/',async(req,res)=>{
          await student.save();
          res.status(200).send(student);
     } catch (error) {
+        console.log(error)
         res.status(400).send(error);
     }
-
-    
 })
 
 router.post('/valid',async(req,res)=>{

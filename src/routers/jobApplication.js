@@ -17,4 +17,5 @@ router.post('/jobApp',async(req,res)=>{
     
 })
 
+
 module.exports=router;

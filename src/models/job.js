@@ -71,11 +71,11 @@ const Job= mongoose.model('Job',{
          trim:true
      },
      pay:{
-         type:Number,
+         type:String,
          required:true
      },
      tier:{
-         type:Number,
+         type:String,
          required:true
      },
      description:{
@@ -83,6 +83,11 @@ const Job= mongoose.model('Job',{
          required:true,
          trim:true
      },
+     jobType:{
+        type:String,
+        required:true,
+        trim:true
+    },
     //  cg:{
     //      type:Number,
     //      required:true

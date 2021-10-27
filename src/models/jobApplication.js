@@ -12,6 +12,8 @@ const jobAppSchema =new mongoose.Schema({
        required:true,
        
    },
+
+   
    jobID:{
        type:mongoose.Types.ObjectId,
        ref:'Job'

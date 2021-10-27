@@ -45,6 +45,7 @@ router.get('/filter/:id',async(req,res)=>{
         throw new Error('The student does not exist');
     }
     
+    
     const cg=student.cgpa;
     const branch = student.branch;
     const backlogs= student.backlogs;
@@ -52,13 +53,18 @@ router.get('/filter/:id',async(req,res)=>{
     const class12= student.class12;
     // const filteredJobs= await Job.find({eligibility:{"cg" : { $lte : cg}, branch:branch, backlogs:{ $lte: backlogs},class10:{ $gte:student.class10},class12:{ $gte:student.class12}}}).exec();
     // res.send(filteredJobs);
-
+   
+    const d = new Date();
+    let year = d.getFullYear()
+    console.log(year);
 
     Job.where('eligibility.cg').lte(cg)
         .where('eligibility.branch').equals(branch)
         .where('eligibility.backlogs').lte(backlogs)
         .where ('eligibility.class10').lte(class10)
         .where ('eligibility.class12').lte(class12)
+        .where('jobType').equals(student.semester === 5 ? 'Intern' : 'FullTime')
+        .where('year').equals(year)
             .exec(function(err,result){
          if(err){
              res.send(err);

@@ -12,8 +12,11 @@ const jobAppSchema =new mongoose.Schema({
        required:true,
        
    },
-
-   
+   studentName:{
+       type:String,
+       required:true,
+       trim:true
+   },
    jobID:{
        type:mongoose.Types.ObjectId,
        ref:'Job'
@@ -30,7 +33,9 @@ const jobAppSchema =new mongoose.Schema({
        type:String,
        required:true
    },
-   status: String
+   status: {
+       type:String
+   }
 })
 const jobApplication = mongoose.model('jobApplication',jobAppSchema);
 

@@ -30,50 +30,70 @@ router.get('/jobApp/:id',async(req,res)=>{
 })
 
 
-///////////////////////////////////////----------NOt working-------------//////////////////////////
-router.patch('/jobApp/result/:id/:jid',async(req,res)=>{
+///////////////////////////////////////---------- working-------------//////////////////////////
+// router.patch('/jobApp/result/:id/:jid',async(req,res)=>{
 
-    const SID= req.params.id;
-    const jobID= req.params.jid;
+//     const SID= req.params.id;
+//     const jobID= req.params.jid;
 
-    const updates= Object.keys(req.body);
-    const allowedUpdates=['status']
-    const isValidOperation= updates.every((update)=>{
-         return allowedUpdates.includes(update);
-    })
+//     const updates= Object.keys(req.body);
+//     const allowedUpdates=['status']
+//     const isValidOperation= updates.every((update)=>{
+//          return allowedUpdates.includes(update);
+//     })
 
-    if(!isValidOperation){
-        return res.status(400).send({error: 'Invalid operation!'});
-    }
+//     if(!isValidOperation){
+//         return res.status(400).send({error: 'Invalid operation!'});
+//     }
 
 
     
 
 
-        const jobApp = await  jobApplication.find({jobID:jobID, SID:SID});
-        console.log(jobApp);
-        // updates.forEach((update)=>{
-        //     jobApp[update]=req.body[update];
-        // })
-        jobApp[0].status= "SELECTED"
-        console.log(jobApp);
-        // await jobApp.markModified('jobApplication');
-        await jobApp.save()
+//         const jobApp = await  jobApplication.find({jobID:jobID, SID:SID});
+//         console.log(jobApp);
+//         // updates.forEach((update)=>{
+//         //     jobApp[update]=req.body[update];
+//         // })
+//         jobApp[0].status= "SELECTED"
+//         console.log(jobApp);
+//         // await jobApp.markModified('jobApplication');
+//         await jobApp[0].save()
         
         
 
 
-        // const task= await Task.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true});
+//         // const task= await Task.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true});
 
-        if(!jobApp){
-            return res.status(404).send();
-        }
+//         if(!jobApp){
+//             return res.status(404).send();
+//         }
 
-        res.send(jobApp);
+//         res.send(jobApp);
         
    
     
+// })
+
+router.post('/jobApp/result',async(req,res)=>{
+    const jobID= req.body.jobID;
+    const SID= req.body.SID;
+    const status= req.body.status;
+
+    try {
+        const job= await jobApplication.find({jobID,SID})
+        console.log(job);
+        job[0].status= status;
+        await job[0].save();
+        res.status(200).send(job);
+          
+      } catch (error) {
+          res.status(500).send(error);
+      }
+      
 })
+
+
 
 
 module.exports=router;

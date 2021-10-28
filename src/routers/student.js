@@ -174,10 +174,32 @@ router.patch('/:id',async(req,res)=>{
     }
     
 })
+////////////////////////////-----------offer accepted---------------/////////////////////////////
+
+router.post('/offer',async(req,res)=>{
+    const SID=req.body.SID;
+    const jobID=req.body.jobID;
+
+    try {
+        const jobApp= await jobApplication.findOne({SID,jobID});
+        jobApp.status="ACCEPTED";
+        await jobApp.save();
+        console.log(jobApp);
+        const student= await Student.findOne({SID});
+        student.offer=true;
+        await student.save();
+        res.status(200).send(student)
+    } catch (error) {
+        res.status(404).send(error)
+    }
+    
+})
 
 
 
-////////////////////////////-------------jobApp------------------///////////////////////
+
+
+////////////////////////////-------------jobApp(student applied to how many companies)------------------///////////////////////
 
 router.get('/jobApp/:id', async(req,res)=>{
       const SID= req.params.id;

@@ -17,6 +17,28 @@ router.post('/jobApp',async(req,res)=>{
     
 })
 
+router.get('/jobApp/applied',async(req,res)=>{
+    const jobID=req.body.jobID;
+    const studentID=req.body.studentID;
+    
+    try {
+        const job= await jobApplication.find({jobID,studentID});
+        return res.send(true);
+    } catch (error) {
+        return res.send(false);
+    }
+        
+        // console.log(job[0]);
+        // if(job.size===0){
+        //   return res.send(false);
+        // }
+        // else 
+       
+        
+      
+      
+})
+
 router.get('/jobApp/:id',async(req,res)=>{
     const jobID= req.params.id;
 
@@ -82,7 +104,7 @@ router.post('/jobApp/result',async(req,res)=>{
 
     try {
         const job= await jobApplication.find({jobID,SID})
-        console.log(job);
+        // console.log(job);
         job[0].status= status;
         await job[0].save();
         res.status(200).send(job);
@@ -90,8 +112,10 @@ router.post('/jobApp/result',async(req,res)=>{
       } catch (error) {
           res.status(500).send(error);
       }
-      
+
 })
+
+
 
 
 

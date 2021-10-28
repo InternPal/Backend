@@ -63,7 +63,7 @@ router.get('/filter/:id',async(req,res)=>{
         .where('eligibility.backlogs').lte(backlogs)
         .where ('eligibility.class10').lte(class10)
         .where ('eligibility.class12').lte(class12)
-        .where('jobType').equals(student.semester === 5 ? 'Intern' : 'FullTime')
+        .where('jobType').equals(student.semester === 5 ? 'Internship' : 'Full Time')
         .where('year').equals(year)
             .exec(function(err,result){
          if(err){

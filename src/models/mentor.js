@@ -30,8 +30,7 @@ const mentorSchema= new mongoose.Schema({
         ref:'Student'
     }]
     
-        
-    
+
 })
 
 

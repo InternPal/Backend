@@ -38,11 +38,7 @@ adminSchema.statics.findByCredentials= async(email,password)=>{
     }
  
     return admin;
-<<<<<<< HEAD
  } 
-=======
- }
->>>>>>> ce143ac599aa2e9527d8ce4ee3164e6c97722df3
 
 const Admin = mongoose.model('Admin', adminSchema);
 

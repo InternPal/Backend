@@ -31,6 +31,7 @@ router.get('/jobApp/:id',async(req,res)=>{
 
 
 ///////////////////////////////////////----------NOt working-------------//////////////////////////
+
 router.patch('/jobApp/result/:id/:jid',async(req,res)=>{
 
     const SID= req.params.id;
@@ -47,7 +48,6 @@ router.patch('/jobApp/result/:id/:jid',async(req,res)=>{
     }
 
 
-    
 
 
         const jobApp = await  jobApplication.find({jobID:jobID, SID:SID});
@@ -61,7 +61,6 @@ router.patch('/jobApp/result/:id/:jid',async(req,res)=>{
         await jobApp.save()
         
         
-
 
         // const task= await Task.findByIdAndUpdate(req.params.id,req.body,{new:true,runValidators:true});
 

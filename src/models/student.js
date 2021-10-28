@@ -124,8 +124,32 @@ const studentSchema= new mongoose.Schema({
     linkedin:{
         type:String
 
-    }
+    },
 
+    userDP : {
+        type : Buffer,
+        required:true  
+    },
+
+    resume : {
+        type : Buffer,
+        required:true
+    },
+
+    collegeDMC : {
+        type : Buffer,
+        required:true
+    },
+
+    class12DMC : {
+        type : Buffer,
+        required:true
+    },
+
+    class10DMC : {
+        type : Buffer,
+        required:true
+    }
 })
 
 

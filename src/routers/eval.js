@@ -24,6 +24,30 @@ router.get('/evals/:sid',async(req,res)=>{
 })
 
 
+router.post('/eval',async(req,res)=>{
+    const objects=req.body.objects;
+
+    // eval.insertMany(objects, onInsert);
+    // function onInsert(err,result){
+    //     if(err){
+    //          res.status(404).send(err);
+    //     }
+
+    //     res.status(404).send(result);
+    // }
+
+    eval.insertMany(objects)  
+    .then((result) => {
+            console.log("result ", result);
+            res.status(200).json({'success': 'new documents added!', 'data': result});
+    })
+    .catch(err => {
+            console.error("error ", err);
+            res.status(400).json({err});
+    });
+})
+
+
 
 
 

@@ -225,4 +225,22 @@ router.get('/jobApp/:id', async(req,res)=>{
 
 })
 
+
+
+router.get('/:sem/:of',async(req,res)=>{
+    const semester= req.params.sem;
+    const offer= req.params.of;
+
+    try {
+        const students=await  Student.find({semester,offer})
+        res.status(200).send(students);
+    } catch (error) {
+        res.status(500).send(error)
+    }
+
+})
+
+
+
+
 module.exports=router;

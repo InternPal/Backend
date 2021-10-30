@@ -17,12 +17,13 @@ router.post('/jobApp',async(req,res)=>{
     
 })
 
-router.get('/jobApp/applied',async(req,res)=>{
-    const jobID=req.body.jobID;
-    const studentID=req.body.studentID;
+router.get('/jobApp/applied/:jobID/:sID',async(req,res)=>{
+    const jobID=req.params.jobID;
+    const SID=+req.params.sID;
+
     
     try {
-        const job= await jobApplication.find({jobID,studentID});
+        const job= await jobApplication.find({jobID,SID});
         return res.send(true);
     } catch (error) {
         return res.send(false);

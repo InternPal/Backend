@@ -127,27 +127,27 @@ const studentSchema= new mongoose.Schema({
     },
 
     userDP : {
-        type : Buffer,
+        type : String,
         required:true  
     },
 
     resume : {
-        type : Buffer,
+        type : String,
         required:true
     },
 
     collegeDMC : {
-        type : Buffer,
+        type : String,
         required:true
     },
 
     class12DMC : {
-        type : Buffer,
+        type : String,
         required:true
     },
 
     class10DMC : {
-        type : Buffer,
+        type : String,
         required:true
     }
 })

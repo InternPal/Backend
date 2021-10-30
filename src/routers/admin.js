@@ -4,9 +4,9 @@ const Admin= require('../models/admin');
 const Job= require('../models/job');
 
 
-router.get('/getJobs',async(req,res)=>{
-    const year=req.body.year;
-    const type=req.body.jobType;
+router.get('/getJobs/:year/:jobType',async(req,res)=>{
+    const year=req.params.year;
+    const type=req.params.jobType;
 
     Job.where('year').equals(year)
         .where('jobType').equals(type)

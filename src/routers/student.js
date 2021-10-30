@@ -60,7 +60,7 @@ router.get('/filter/:id',async(req,res)=>{
 
     Job.where('eligibility.cg').lte(cg)
         .where('eligibility.branch').equals(branch)
-        .where('eligibility.backlogs').lte(backlogs)
+        .where('eligibility.backlogs').gte(backlogs)
         .where ('eligibility.class10').lte(class10)
         .where ('eligibility.class12').lte(class12)
         .where('jobType').equals(student.semester === 5 ? 'Internship' : 'Full Time')
@@ -179,7 +179,7 @@ router.post('/offer',async(req,res)=>{
 
     try {
         const jobApp= await jobApplication.findOne({SID,jobID});
-        jobApp.status="ACCEPTED";
+        jobApp.status="Accepted";
         await jobApp.save();
         console.log(jobApp);
         const student= await Student.findOne({SID});

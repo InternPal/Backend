@@ -154,8 +154,17 @@ const Job= mongoose.model('Job',{
             type:Number,
             required:true
         }
-    })
+    }),
 
+    logo : {
+        type : String,
+        required:true
+    },
+
+    jobDoc : {
+        type : String,
+        required:true
+    },
 
 
 });

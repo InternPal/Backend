@@ -24,12 +24,7 @@ const mentorSchema= new mongoose.Schema({
         required:true,
         trim:true,
         
-    },
-    studentList:[{
-        type: mongoose.Types.ObjectId,
-        ref:'Student'
-    }]
-    
+    }
 
 })
 

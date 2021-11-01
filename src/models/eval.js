@@ -22,26 +22,26 @@ const evalSchema= new mongoose.Schema({
    },
    midtermReport:{
        type:String,
-       required:true,
+    //    required:true,
        trim:true
    },
    finalReport:{
        type:String,
-       required:true,
+    //    required:true,
        trim:true
 
    },
    mentorGrade:{
        type:Number,
-       required:true
+    //    required:true
    },
    panelGrade:{
        type:Number,
-       required:true
+    //    required:true
    },
    finalGrade:{
        type:Number,
-       required:true
+    //    required:true
    }
 
 })

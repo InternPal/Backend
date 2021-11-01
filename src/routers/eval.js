@@ -2,6 +2,15 @@ const express= require('express');
 const router = new express.Router();
 const eval= require('../models/eval');
 
+router.get('/evals/:sid',async(req,res)=>{
+    const SID= +req.params.sid;
+    try {
+        const obj = await eval.findOne({SID});
+        res.status(200).send(obj);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+})
 
 router.get('/eval/:id',async(req,res)=>{
     const mentorID= req.params.id;
@@ -13,15 +22,17 @@ router.get('/eval/:id',async(req,res)=>{
     }
 })
 
-router.get('/evals/:sid',async(req,res)=>{
-    const SID= req.params.sid;
+
+router.get('/eval',async(req,res)=>{
     try {
-        const eval= await eval.findOne({SID});
-        res.status(200).send(eval);
+        const evals= await eval.find({});
+        res.status(200).send(evals);
     } catch (error) {
         res.status(500).send(error);
     }
 })
+
+
 
 
 router.post('/eval',async(req,res)=>{
@@ -49,15 +60,15 @@ router.post('/eval',async(req,res)=>{
 
 
 router.post('/eval/midReport',async(req,res)=>{
-    const SID= req.body.SID;
+    const SID= +req.body.SID;
     const string= req.body.string;
 
     try {
         
-        const eval= await eval.findOne({SID});
-    eval.midtermReport= string;
-    await eval.save();
-    res.status(200).send(eval);
+    const obj = await eval.findOne({SID});
+    obj.midtermReport= string;
+    await obj.save();
+    res.status(200).send(obj);
     } catch (error) {
         res.status(404).send(error);
     }
@@ -71,10 +82,10 @@ router.post('/eval/finalReport',async(req,res)=>{
 
     try {
         
-        const eval= await eval.findOne({SID});
-    eval.finalReport= string;
-    await eval.save();
-    res.status(200).send(eval);
+        const obj= await eval.findOne({SID});
+    obj.finalReport= string;
+    await obj.save();
+    res.status(200).send(obj);
     } catch (error) {
         res.status(404).send(error);
     }
@@ -88,10 +99,13 @@ router.post('/eval/mentorGrade',async(req,res)=>{
 
     try {
         
-        const eval= await eval.findOne({SID});
-    eval.mentorGrade= number;
-    await eval.save();
-    res.status(200).send(eval);
+        const obj= await eval.findOne({SID});
+    obj.mentorGrade= number;
+    if(obj.panelGrade !== null){
+        obj.finalGrade = (obj.mentorGrade + obj.panelGrade)/2;
+    }
+    await obj.save();
+    res.status(200).send(obj);
     } catch (error) {
         res.status(404).send(error);
     }
@@ -104,10 +118,13 @@ router.post('/eval/panelGrade',async(req,res)=>{
 
     try {
         
-        const eval= await eval.findOne({SID});
-        eval.panelGrade= number;
-        await eval.save();
-    res.status(200).send(eval);
+        const obj= await eval.findOne({SID});
+        obj.panelGrade= number;
+        if(obj.mentorGrade !== null){
+            obj.finalGrade = (obj.mentorGrade + obj.panelGrade)/2;
+        }
+        await obj.save();
+    res.status(200).send(obj);
     } catch (error) {
         res.status(404).send(error);
     }

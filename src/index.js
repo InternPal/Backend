@@ -11,6 +11,8 @@ const Admin= require('./models/admin');
 const Mentor= require('./models/mentor');
 const jobApplication= require('./models/jobApplication');
 const eval= require('./models/eval');
+const faculty=require('./models/facultyCoordinator');
+const industry=require('./models/industryCoordinator');
 
 
 const studentRoutes=require('./routers/student');

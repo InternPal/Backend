@@ -23,8 +23,12 @@ router.get('/jobApp/applied/:jobID/:sID',async(req,res)=>{
 
     
     try {
-        const job= await jobApplication.find({jobID,SID});
-        return res.send(true);
+        const job= await jobApplication.findOne()
+        .where("jobID").equals(jobID)
+        .where("SID").equals(SID);
+
+        if(job)return res.send(true);
+        return res.send(false);
     } catch (error) {
         return res.send(false);
     }

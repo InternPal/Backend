@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
         await student.save();
         res.status(200).send(student);
     } catch (error) {
-        console.log(error)
         res.status(400).send(error);
     }
 })
@@ -72,8 +71,7 @@ router.get('/filter/:id', async (req, res) => {
     // res.send(filteredJobs);
 
     const d = new Date();
-    let year = d.getFullYear()
-    console.log(year);
+    let year = d.getFullYear() 
 
     Job.where('eligibility.cg').lte(cg)
         .where('eligibility.branch').equals(branch)
@@ -190,7 +188,6 @@ router.post('/offer', async (req, res) => {
         const jobApp = await jobApplication.findOne({ SID, jobID });
         jobApp.status = "Accepted";
         await jobApp.save();
-        console.log(jobApp);
         const student = await Student.findOne({ SID });
         student.offer = true;
         await student.save();

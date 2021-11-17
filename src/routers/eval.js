@@ -49,11 +49,9 @@ router.post('/eval',async(req,res)=>{
 
     eval.insertMany(req.body)  
     .then((result) => {
-            console.log("result ", result);
             res.status(200).json({'success': 'new documents added!', 'data': result});
     })
     .catch(err => {
-            console.error("error ", err);
             res.status(400).json({err});
     });
 })

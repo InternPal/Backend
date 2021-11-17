@@ -15,10 +15,10 @@ router.post('/login',async(req,res)=>{
         if(req.body.type ==='Student'){
             const student= await Student.findByCredentials(req.body.email,req.body.password);
             res.send(student);
-        }else if(req.body.type ==='facultyCoordinator'){
+        }else if(req.body.type ==='Faculty Coordinator'){
             const faculty= await facultyCoordinator.findByCredentials(req.body.email,req.body.password);
             res.send(faculty);
-        }else if(req.body.type ==='industryCoordinator'){
+        }else if(req.body.type ==='Industry Coordinator'){
             const industry= await industryCoordinator.findByCredentials(req.body.email,req.body.password);
             res.send(industry);
         }

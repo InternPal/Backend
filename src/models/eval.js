@@ -11,11 +11,20 @@ const evalSchema= new mongoose.Schema({
        required:true,
        trim:true
    },
-   mentorID:{
+   facultyCoordinatorID:{
        type:mongoose.Types.ObjectId,
-       ref:'Mentor'
+       ref:'facultyCoordinator'
    },
-   mentorName:{
+   facultyCoordinatorName:{
+       type:String,
+       trim:true,
+       required:true
+   },
+   industryCoordinatorID:{
+       type:mongoose.Types.ObjectId,
+       ref:'industryCoordinator'
+   },
+   industryCoordinatorName:{
        type:String,
        trim:true,
        required:true

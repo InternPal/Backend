@@ -1,6 +1,9 @@
 const express= require('express');
 const router = new express.Router();
 const industryCoordinator= require('../models/industryCoordinator');
+const sendEmail = require('../send-email/email');
+
+
 
 
 router.post('/',async(req,res)=>{
@@ -9,6 +12,7 @@ router.post('/',async(req,res)=>{
 
     try {
          await industry.save();
+         sendEmail("Industry Coordinator", req.body.name, req.body.email, req.body.password);
          res.status(200).send(industry);
     } catch (error) {
         res.status(400).send(error);

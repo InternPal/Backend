@@ -1,7 +1,7 @@
 const express= require('express');
 const cors= require('cors');
 require('./db/mongoose.js');
-
+require('dotenv').config()
 
 
 
@@ -22,6 +22,8 @@ const adminRoutes= require('./routers/admin');
 const authRoutes =require('./routers/auth');
 const jobAppRoutes= require('./routers/jobApplication');
 const evalRoutes=require('./routers/eval');
+const facultyCoordinatorRoutes = require('./routers/facultyCoordinator');
+const industryCoordinatorRoutes = require('./routers/industryCoordinator');
 
 
 const app=express();
@@ -51,6 +53,8 @@ app.use("/students",studentRoutes);
 app.use("/jobs",jobRoutes);
 app.use("/mentors",mentorRoutes);
 app.use("/admins",adminRoutes);
+app.use("/facultyCoordinator", facultyCoordinatorRoutes);
+app.use("/industryCoordinator", industryCoordinatorRoutes)
 app.use(authRoutes);
 app.use(jobAppRoutes);
 app.use(evalRoutes);

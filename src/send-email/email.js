@@ -1,20 +1,21 @@
+require('dotenv').config()
 var nodemailer = require('nodemailer');
 
+const sendEmail = (role, name ,email, password)=>{
+require('dotenv').config()
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'shivamarora.bt19cse@pec.edu.in',
-    pass: ''
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
 var mailOptions = {
-  from: 'shivamarora.bt19cse@pec.edu.in',
-  to: 'dhruvpurwar15@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: `Hi Smartherd, thank you for your nice Node.js tutorials.
-          I will donate 50$ for this course. Please send me payment options.`
-  // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+  from: process.env.EMAIL,
+  to: email,
+  subject: "InternPal Login Credentials",
+  text: `Hi ${name}, Your Login Credentials for the Role of ${role} are : \n Email : ${email} \n Password : ${password}`     
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -24,3 +25,8 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Email sent: ' + info.response);
   }
 });
+}
+
+
+
+module.exports = sendEmail;

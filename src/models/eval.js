@@ -29,29 +29,12 @@ const evalSchema= new mongoose.Schema({
        trim:true,
        required:true
    },
-   midtermReport:{
-       type:String,
-    //    required:true,
-       trim:true
-   },
-   finalReport:{
-       type:String,
-    //    required:true,
-       trim:true
-
-   },
-   mentorGrade:{
-       type:Number,
-    //    required:true
-   },
-   panelGrade:{
-       type:Number,
-    //    required:true
-   },
-   finalGrade:{
-       type:Number,
-    //    required:true
-   }
+   joiningReport : { type : mongoose.SchemaTypes.Mixed, default : null },
+   studentFeedbackForm : { type : mongoose.SchemaTypes.Mixed, default : null },
+   firstVisitReport :{ type :  mongoose.SchemaTypes.Mixed, default : null },
+   secondVisitReport : { type : mongoose.SchemaTypes.Mixed, default : null },
+   industryFeedbackForm : { type : mongoose.SchemaTypes.Mixed, default : null },
+   industryEvaluationForm : { type : mongoose.SchemaTypes.Mixed, default : null },
 
 })
 
